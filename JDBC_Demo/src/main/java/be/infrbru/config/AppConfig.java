@@ -3,6 +3,7 @@ package be.infrbru.config;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,8 +14,10 @@ public class AppConfig {
 
 	private String driverClassName = "oracle.jdbc.driver.OracleDriver";
 	private String databaseUrl = "jdbc:oracle:thin:@PVMDEV:1521:PVMDEV";
-	private String databaseUsername = "inforbru";
-	private String databasePassword = "EersteDag1";
+	private String databaseUsername = "ikmo2001";
+	private String databasePassword = "oerbier";
+
+	private static final Logger LOGGER = Logger.getLogger(AppConfig.class);
 
 	@Bean
 	public DataSource myDataSource() {
@@ -26,7 +29,7 @@ public class AppConfig {
 		source.setUsername(databaseUsername);
 		source.setPassword(databasePassword);
 
-		System.out.println("MyDataSource is created for user: " + databaseUsername);
+		LOGGER.info("MyDataSource is created for user: " + databaseUsername);
 
 		return source;
 	}

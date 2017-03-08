@@ -1,25 +1,37 @@
 package be.infrbru.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+import be.infrbru.model.Employer;
 
 @Service
-public class MyService {
+public class MyServiceImpl implements MyService {
 
-	private static final Logger LOGGER = Logger.getLogger(MyService.class);
+	private static final Logger LOGGER = Logger.getLogger(MyServiceImpl.class);
 
-	private MyDao myDao;
+	private EmployerDao employerDao;
 
 	// AUTOWIRED WILL INJECT THE MYDAO IN THE CONSTRUCTOR WHEN THE SERVICE IS CREATED BY SPRING
 	@Autowired
-	public MyService(MyDao myDao) {
-		this.myDao = myDao;
+	public MyServiceImpl(EmployerDao employerDao) {
+		this.employerDao = employerDao;
 		LOGGER.info("MyService instantiated");
 	}
 
-	public void doStuff() {
-		LOGGER.info("MyService is working hard on the DAO: " + myDao.getClass().getName());
+	@Override
+	public List<Employer> selectAllEmployers() {
+		return employerDao.findAll();
+	}
+
+	@Override
+	public Employer selectEmployerById(String id) {
+		Assert.notNull(id, "id must not be null");
+		return employerDao.findById(id);
 	}
 
 }
