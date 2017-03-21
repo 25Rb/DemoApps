@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Implementation-Title: spring.boot
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: infrbru
-Implementation-Vendor-Id: be.tuturself
+Implementation-Vendor-Id: com.tuturself
 Build-Jdk: 1.8.0_102
 Implementation-URL: http://projects.spring.io/spring-boot/spring.boot/
 Created-By: Maven Integration for Eclipse
